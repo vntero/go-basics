@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"go-basics/functions"
+)
 
-func main () {
-	fmt.Println("Hello, world!")
-}
+
+func main() {
+	functions.PrintHelloWorld()
+} 
