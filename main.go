@@ -6,6 +6,7 @@ import (
 
 
 func main() {
-	packages.PrintHelloWorld()
-	packages.TruncateFloat()
+	// packages.PrintHelloWorld()
+	// packages.TruncateFloat()
+	packages.Findian()
 } 

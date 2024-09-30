@@ -5,6 +5,7 @@ import (
 	"math"
 )
 
+// 2. Truncate floating point number
 func TruncateFloat() {
 	var input float64
 
