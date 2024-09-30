@@ -1,10 +1,11 @@
 package main
 
 import (
-	"go-basics/functions"
+	"go-basics/packages"
 )
 
 
 func main() {
-	functions.PrintHelloWorld()
+	packages.PrintHelloWorld()
+	packages.TruncateFloat()
 } 
