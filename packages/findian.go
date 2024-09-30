@@ -8,7 +8,7 @@ import (
 func Findian() {
 	var input string 
 	fmt.Print("Enter a string: ")
-	fmt.Scan(&input)
+	fmt.Scanln(&input)
 
 	var loweredInput string = strings.ToLower(input)
 
