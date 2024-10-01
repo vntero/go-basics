@@ -1,6 +1,10 @@
 package packages
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+	"strconv"
+)
 
 func SortedSlice() {
 	//create an empty integer slice of length 3
@@ -13,9 +17,25 @@ func SortedSlice() {
 		var input string
 		fmt.Scan(&input)
 
-		// Quit when the user enters the character X
-		if input == 'X' || input == 'x' {
+		// quit when the user enters the character X
+		if input == "X" || input == "x" {
 			fmt.Print("Program closed.")
+			break
 		}
+
+		// convert input from string to int
+		num, err := strconv.Atoi(input)
+		if err != nil {
+			fmt.Println("The input entered is not valid. Try again.")
+		}
+
+		// add the integer to the slice
+		slice = append(slice, num)
+
+		// sort the slice
+		sort.Ints(slice)
+
+		// prints the content of the slice
+		fmt.Println(slice)
 	}
 }
