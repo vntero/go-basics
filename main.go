@@ -9,5 +9,6 @@ func main() {
 	// packages.PrintHelloWorld()
 	// packages.TruncateFloat()
 	// packages.Findian()
-	packages.SortedSlice()
+	// packages.SortedSlice()
+	packages.MakeJson()
 } 

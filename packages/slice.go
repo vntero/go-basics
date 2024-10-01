@@ -6,6 +6,7 @@ import (
 	"strconv"
 )
 
+// 4. Sorted slice
 func SortedSlice() {
 	//create an empty integer slice of length 3
 	slice := make([]int, 0, 3)
@@ -19,7 +20,7 @@ func SortedSlice() {
 
 		// quit when the user enters the character X
 		if input == "X" || input == "x" {
-			fmt.Print("Program closed.")
+			fmt.Println("Program closed.")
 			break
 		}
 
