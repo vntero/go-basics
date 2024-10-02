@@ -10,5 +10,6 @@ func main() {
 	// packages.TruncateFloat()
 	// packages.Findian()
 	// packages.SortedSlice()
-	packages.MakeJson()
+	// packages.MakeJson()
+	packages.Read()
 } 
