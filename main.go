@@ -11,5 +11,6 @@ func main() {
 	// packages.Findian()
 	// packages.SortedSlice()
 	// packages.MakeJson()
-	packages.Read()
+	// packages.Read()
+	packages.BubbleSort()
 } 
