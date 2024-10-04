@@ -28,7 +28,7 @@ func BubbleSort() {
 
 	fmt.Println("clean input", elements)
 
-	// convert input to integers
+	// convert input from string to integers
 	numbers := make([]int, 0, len(elements))
 	for i := 1; i <= len(elements); i++ {
 		numbers = append(numbers, i)
