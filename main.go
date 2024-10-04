@@ -12,5 +12,5 @@ func main() {
 	// packages.SortedSlice()
 	// packages.MakeJson()
 	// packages.Read()
-	packages.BubbleSort()
+	packages.BubbleSorted()
 } 
