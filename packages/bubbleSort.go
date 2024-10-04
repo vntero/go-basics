@@ -30,11 +30,13 @@ func BubbleSorted() {
 	// grab what user typed
 	reader := bufio.NewReader(os.Stdin)
 	input, _ := reader.ReadString('\n')
-	fmt.Println("raw input", input)
 
 	// split input and check if length is 10
 	elements := strings.Fields(input)
-	fmt.Println("clean input", elements)
+	if len(elements) > 10 {
+		fmt.Println("Too many integers entered, please type in up to 10.")
+		return
+	}
 
 	// convert input from string to integers
 	numbers := make([]int, 0, len(elements))
@@ -47,11 +49,9 @@ func BubbleSorted() {
 		numbers = append(numbers, num)
 	}
 
-	fmt.Println("converted input", numbers)
-
 	// sort the numbers using BubbleSort
 	BubbleSort(numbers)
 
 	// print the sorted result
-	fmt.Println("sorted result", numbers)
+	fmt.Println("sorted input", numbers)
 }
