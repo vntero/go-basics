@@ -1,40 +1,37 @@
 package packages
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
-	"strings"
 )
 
-func GenDisplaceFn(a float64, v float64, s float64) func(t float64) {
-
+func GenDisplaceFn(a, v, s float64) func(float64) float64 {
+	return func(t float64) float64 {
+		return 0.5*a*t*t + v*t + s
+	}
 }
 
 
 func Displacement() {
-	// prompt the user for values
-	fmt.Println("Enter values for acceleration, initial velocity, and initial displacement.")
+	var a, vo, so, t float64
 
-	// grab what the user typed
-	reader := bufio.NewReader(os.Stdin)
-	input, _ := reader.ReadString('\n')
+	// prompt user for initial values
+	fmt.Print("Enter acceleration (a): ")
+	fmt.Scan(&a)
 
-	// grab each value individually
-	elements := strings.Fields(input)
+	fmt.Print("Enter initial velocity (vo): ")
+	fmt.Scan(&vo)
 
-	// convert values from string to int
-	numbers := make([]int, 0, len(elements))
-	for _, element := range elements {
-		num, err := strconv.Atoi(element)
-		if err != nil {
-			fmt.Println("Invalid input. Please enter valid integers.")
-			return
-		}
-		numbers = append(numbers, num)
-	}
+	fmt.Print("Enter initial displacement (so): ")
+	fmt.Scan(&so)
+
+	// generate displacement function
+	fn := GenDisplaceFn(a, vo, so)
 
 	// prompt user for time
-	fmt.Println("Enter value for time.")
+	fmt.Print("Enter time (t): ")
+	fmt.Scan(&t)
+
+	// compute displacement
+	displacement := fn(t)
+	fmt.Println("Displacement after", t, "seconds is", displacement)
 }
