@@ -27,7 +27,7 @@ func (a Animal) Speak() {
 	fmt.Println(a.noise)
 }
 
-func Animals() {
+func SelectAnimal() {
 	// predefine animals
 	cow := Animal{
 		food:       "grass",

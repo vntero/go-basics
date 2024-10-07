@@ -13,5 +13,6 @@ func main() {
 	// packages.MakeJson()
 	// packages.Read()
 	// packages.BubbleSorted()
-	packages.Displacement()
+	// packages.Displacement()
+	packages.SelectAnimal()
 } 
