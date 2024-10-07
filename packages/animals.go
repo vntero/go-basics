@@ -1,6 +1,11 @@
 package packages
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
 
 // make a type called animal
 type Animal struct {
@@ -10,43 +15,78 @@ type Animal struct {
 }
 
 // make three methods
-func (a Animal) Eat(){
+func (a Animal) Eat() {
 	fmt.Println(a.food)
 }
 
-func (a Animal) Move(){
+func (a Animal) Move() {
 	fmt.Println(a.locomotion)
 }
 
-func (a Animal) Speak(){
+func (a Animal) Speak() {
 	fmt.Println(a.noise)
 }
 
-
-
 func Animals() {
-	// predefined animals
+	// predefine animals
 	cow := Animal{
-		food: "grass",
+		food:       "grass",
 		locomotion: "walk",
-		noise: "moo",
+		noise:      "moo",
 	}
 
 	bird := Animal{
-		food: "worms",
+		food:       "worms",
 		locomotion: "fly",
-		noise: "peep",
+		noise:      "peep",
 	}
 
 	snake := Animal{
-		food: "mice",
+		food:       "mice",
 		locomotion: "slither",
-		noise: "hsss",
+		noise:      "hsss",
 	}
 
+	// create a map to link animalName with corresponding type
+	animals := map[string]Animal{
+		"cow":   cow,
+		"bird":  bird,
+		"snake": snake,
+	}
 
-	// prompt user
-	fmt.Println("Enter the name of the animal followed by name of information requested.")
+	for {
+		// prompt user
+		fmt.Println(">")
 
-	fmt.Println(cow)
+		// grab what user typed
+		reader := bufio.NewReader(os.Stdin)
+		input, _ := reader.ReadString('\n')
+		elements := strings.Fields(input)
+
+		// check correct input
+		if len(elements) != 2 {
+			fmt.Println("Invalid input. Please provide 1 animal and 1 action.")
+		}
+
+		animalName, animalAction := elements[0], elements[1]
+		animal, ok := animals[animalName]
+
+		// check correct animal name
+		if !ok {
+			fmt.Println("Enter a valid animal.")
+			continue
+		}
+
+		switch animalAction {
+		case "eat":
+			animal.Eat()
+		case "move":
+			animal.Move()
+		case "speak":
+			animal.Speak()
+		default:
+			fmt.Println("Enter a valid action.")
+		}
+	}
+	
 }
