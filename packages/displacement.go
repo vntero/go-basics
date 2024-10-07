@@ -8,9 +8,13 @@ import (
 	"strings"
 )
 
+func GenDisplaceFn(a float64, v float64, s float64) func(t float64) {
 
-func Formula() {
-	// prompt the user
+}
+
+
+func Displacement() {
+	// prompt the user for values
 	fmt.Println("Enter values for acceleration, initial velocity, and initial displacement.")
 
 	// grab what the user typed
@@ -30,4 +34,7 @@ func Formula() {
 		}
 		numbers = append(numbers, num)
 	}
+
+	// prompt user for time
+	fmt.Println("Enter value for time.")
 }

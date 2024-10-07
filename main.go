@@ -13,5 +13,5 @@ func main() {
 	// packages.MakeJson()
 	// packages.Read()
 	// packages.BubbleSorted()
-	packages.Formula()
+	packages.Displacement()
 } 
