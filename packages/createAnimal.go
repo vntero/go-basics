@@ -1,0 +1,5 @@
+package packages
+
+func CreateAnimal() {
+	
+}
