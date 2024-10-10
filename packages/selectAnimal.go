@@ -66,6 +66,7 @@ func SelectAnimal() {
 		// check correct input
 		if len(elements) != 2 {
 			fmt.Println("Invalid input. Please provide 1 animal and 1 action.")
+			continue
 		}
 
 		animalName, animalAction := elements[0], elements[1]
