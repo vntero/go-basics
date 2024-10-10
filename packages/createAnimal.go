@@ -7,63 +7,64 @@ import (
 	"strings"
 )
 
-// animal interface
+// Animal interface with three methods
 type Animal interface {
 	Eat()
 	Move()
 	Speak()
 }
 
-// Cow struct and its methods
+// Cow type and its methods
 type Cow struct{}
 
 func (c Cow) Eat()   { fmt.Println("grass") }
 func (c Cow) Move()  { fmt.Println("walk") }
 func (c Cow) Speak() { fmt.Println("moo") }
 
-// Bird struct and its methods
+// Bird type and its methods
 type Bird struct{}
 
 func (b Bird) Eat()   { fmt.Println("worms") }
 func (b Bird) Move()  { fmt.Println("fly") }
 func (b Bird) Speak() { fmt.Println("peep") }
 
-// Snake struct and its methods
+// Snake type and its methods
 type Snake struct{}
 
 func (s Snake) Eat()   { fmt.Println("mice") }
 func (s Snake) Move()  { fmt.Println("slither") }
 func (s Snake) Speak() { fmt.Println("hsss") }
 
-func CreateAnimal() {
-	// store the created animals
+func createAnimal() {
+	// Map to store created animals by name
 	animals := make(map[string]Animal)
 
-	// grab user input
+	// Create a scanner to read user input
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
 		fmt.Print("> ")
 
-		// grab user input
+		// Grab user input
 		scanner.Scan()
 		input := scanner.Text()
 
-		// split input
+		// Split input into parts
 		parts := strings.Fields(input)
 
-		// check input
+		// Check if input has exactly 3 parts
 		if len(parts) != 3 {
-			fmt.Println("Invalid command. Please enter 'newanimal' or 'query' followed by 2 parameters.")
+			fmt.Println("Invalid input. Please use 'newanimal' or 'query' followed by 2 parameters.")
 			continue
 		}
 
-		command := parts[0]
-		name := parts[1]
-		param := parts[2]
+		command := parts[0] // newanimal or query
+		name := parts[1]    // animal name
+		param := parts[2]   // animal type or action
 
-		// newanimal animalName animalType
-		if command == "newanimal" {
+		switch command {
+		case "newanimal":
+			// Create a new animal based on the provided type (cow, bird, snake)
 			var animal Animal
 
 			switch param {
@@ -74,21 +75,21 @@ func CreateAnimal() {
 			case "snake":
 				animal = Snake{}
 			default:
-				fmt.Println("Invalid animal type. Choose 'cow', 'bird', or 'snake'.")
+				fmt.Println("Invalid animal type. Please choose 'cow', 'bird', or 'snake'.")
 				continue
 			}
 
 			animals[name] = animal
 			fmt.Println("Created it!")
 
-		} else if command == "query" {
-			// query animalName animalAction
+		case "query":
+			// Query an animal's behavior (eat, move, speak)
 			animal, exists := animals[name]
 			if !exists {
-				fmt.Println("No such animal found.")
+				fmt.Println("Animal not found.")
 				continue
 			}
-			
+
 			switch param {
 			case "eat":
 				animal.Eat()
@@ -99,9 +100,9 @@ func CreateAnimal() {
 			default:
 				fmt.Println("Invalid query. Use 'eat', 'move', or 'speak'.")
 			}
-		} else {
-			// handle invalid commands
-			fmt.Println("Invalid command. Use 'newanimal' to create an animal or 'query' to ask about an animal.")
+
+		default:
+			fmt.Println("Invalid command. Use 'newanimal' to create or 'query' to ask about an animal.")
 		}
 	}
 }
