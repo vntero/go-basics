@@ -1,8 +1,6 @@
 package main
 
-import (
-	"go-basics/packages"
-)
+import "go-basics/packages"
 
 
 func main() {
@@ -14,5 +12,6 @@ func main() {
 	// packages.Read()
 	// packages.BubbleSorted()
 	// packages.Displacement()
-	packages.SelectAnimal()
+	// packages.SelectAnimal()
+	packages.RaceCondition()
 } 

@@ -8,7 +8,7 @@ import (
 )
 
 // Animal interface with three methods
-type Animal interface {
+type Animals interface {
 	Eat()
 	Move()
 	Speak()
@@ -65,7 +65,7 @@ func createAnimal() {
 		switch command {
 		case "newanimal":
 			// Create a new animal based on the provided type (cow, bird, snake)
-			var animal Animal
+			var animal Animals
 
 			switch param {
 			case "cow":
