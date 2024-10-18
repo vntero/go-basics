@@ -13,5 +13,6 @@ func main() {
 	// packages.BubbleSorted()
 	// packages.Displacement()
 	// packages.SelectAnimal()
-	packages.RaceCondition()
+	// packages.RaceCondition()
+	packages.SortArray()
 } 
