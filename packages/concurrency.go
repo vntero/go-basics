@@ -9,12 +9,13 @@ import (
 	"strings"
 )
 
-// each of which is sorted by different goroutine
-// each partition should be approximately equal size
 // main goroutine should merge the 4 sorted subarrays into one large sorted array
 
 // each goroutine which sorts a quarter of the array should print the subarray that it will sort
 // when sorting is complete, the main goroutine should print the entire sorted list
+func sorter(a []int) {
+	
+}
 
 func SortArray() {
 	// PROMPT THE USER TO INPUT A SERIES OF INTEGERS
@@ -46,4 +47,17 @@ func SortArray() {
 	log.Printf("numbers: %v\n", numbers)
 
 	// PARTITION ARRAY INTO 4 PARTS
+	n := len(numbers) / 4
+	array1 := numbers[0:n]
+	array2 := numbers[n : 2*n]
+	array3 := numbers[2*n : 3*n]
+	array4 := numbers[3*n:]
+
+	// handle spare parts
+	// EACH PARTITION SHOULD BE APPROX. EQUAL SIZE
+	if len(numbers)%4 != 0 {
+		array4 = append(array4, numbers[4*n:]...)
+	}
+
+	// EACH OF WHICH IS SORTED BY DIFFERENT GOROUTINE
 }
