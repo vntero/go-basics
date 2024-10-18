@@ -7,17 +7,29 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 // main goroutine should merge the 4 sorted subarrays into one large sorted array
 
 // each goroutine which sorts a quarter of the array should print the subarray that it will sort
 // when sorting is complete, the main goroutine should print the entire sorted list
-func sorter(a []int) {
-	
+func sorter(a []int, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	n := len(a)
+	for i := 0; i < n; i++ {
+		for j := 0; j < n-i-1; j++ {
+			if a[j] > a[j+1] {
+				Swap(a, j)
+			}
+		}
+	}
 }
 
 func SortArray() {
+	var wg sync.WaitGroup
+
 	// PROMPT THE USER TO INPUT A SERIES OF INTEGERS
 	fmt.Println("Enter a series of at least 12 integers separated by space:")
 
@@ -60,4 +72,15 @@ func SortArray() {
 	}
 
 	// EACH OF WHICH IS SORTED BY DIFFERENT GOROUTINE
+	wg.Add(4)
+	go sorter(array1, &wg)
+	go sorter(array2, &wg)
+	go sorter(array3, &wg)
+	go sorter(array4, &wg)
+	wg.Wait()
+
+	log.Printf("array1: %v\n", array1)
+	log.Printf("array2: %v\n", array2)
+	log.Printf("array3: %v\n", array3)
+	log.Printf("array4: %v\n", array4)
 }
