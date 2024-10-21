@@ -3,7 +3,6 @@ package packages
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"sort"
 	"strconv"
@@ -32,15 +31,7 @@ func SortArray() {
 	// grab what user entered
 	reader := bufio.NewReader(os.Stdin)
 	input, _ := reader.ReadString('\n')
-	log.Printf("input: %v\n", input)
 	parts := strings.Fields(input)
-	log.Printf("parts: %v\n", parts)
-
-	// expect at least 12 integers
-	if len(input) < 12 {
-		fmt.Println("Insufficient numbers of integers entered. Try again.")
-		return
-	}
 
 	// convert array of strings into array of numbers
 	numbers := make([]int, 0, len(parts))
@@ -52,7 +43,12 @@ func SortArray() {
 		}
 		numbers = append(numbers, num)
 	}
-	log.Printf("numbers: %v\n", numbers)
+
+	// expect at least 12 integers
+	if len(numbers) < 12 {
+		fmt.Println("Insufficient number of integers entered. Try again.")
+		return
+	}
 
 	// PARTITION ARRAY INTO 4 PARTS
 	// EACH PARTITION SHOULD BE APPROX. EQUAL SIZE
