@@ -22,6 +22,14 @@ func sorter(a []int, wg *sync.WaitGroup) {
 	fmt.Println("Sorted sub-array:", a)
 }
 
+func merger(a1, a2, a3, a4 []int) []int  {
+	a := append(a1, a2...)
+	a = append(a, a3...)
+	a = append(a, a4...)
+	sort.Ints(a)
+	return a
+}
+
 func SortArray() {
 	var wg sync.WaitGroup
 
@@ -67,11 +75,8 @@ func SortArray() {
 	wg.Wait()
 
 	// main goroutine should merge the 4 sorted subarrays into one large sorted array
-	sortedArray := append(array1, array2...)
-	sortedArray = append(sortedArray, array3...)
-	sortedArray = append(sortedArray, array4...)
-	sort.Ints(sortedArray)
+	result := merger(array1, array2, array3, array4)
 
 	// when sorting is complete, the main goroutine should print the entire sorted list
-	fmt.Println("Here's the final result:", sortedArray)
+	fmt.Println("Here's the final result:", result)
 }
