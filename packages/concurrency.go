@@ -11,9 +11,6 @@ import (
 	"sync"
 )
 
-// main goroutine should merge the 4 sorted subarrays into one large sorted array
-// when sorting is complete, the main goroutine should print the entire sorted list
-
 func sorter(a []int, wg *sync.WaitGroup) {
 	defer wg.Done()
 
@@ -21,6 +18,9 @@ func sorter(a []int, wg *sync.WaitGroup) {
 	fmt.Println("Starting to sort the following sub-array:", a)
 
 	sort.Ints(a)
+
+	// print again once sub-array is sorted
+	fmt.Println("Sorted sub-array:", a)
 }
 
 func SortArray() {
@@ -62,11 +62,6 @@ func SortArray() {
 	array3 := numbers[2*n : 3*n]
 	array4 := numbers[3*n:]
 
-	// handle spare parts
-	if len(numbers)%4 != 0 {
-		array4 = append(array4, numbers[4*n:]...)
-	}
-
 	// EACH OF WHICH IS SORTED BY DIFFERENT GOROUTINE
 	wg.Add(4)
 	go sorter(array1, &wg)
@@ -74,4 +69,13 @@ func SortArray() {
 	go sorter(array3, &wg)
 	go sorter(array4, &wg)
 	wg.Wait()
+
+	// main goroutine should merge the 4 sorted subarrays into one large sorted array
+	sortedArray := append(array1, array2...)
+	sortedArray = append(sortedArray, array3...)
+	sortedArray = append(sortedArray, array4...)
+	sort.Ints(sortedArray)
+
+	// when sorting is complete, the main goroutine should print the entire sorted list
+	fmt.Println("Here's the final result:", sortedArray)
 }
