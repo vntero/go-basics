@@ -1,9 +1,16 @@
 package packages
 
+import "sync"
+
 func Problem() {
 	// 5 PHILOSOPHERS SHARING CHOPSTICKS, WITH 1 CHOPSTICK BETWEEN EACH ADJACENT PAIR OF PHILOSOPHERS
-
 	// EAT ONLY 3 TIMES
+	type Philosopher struct {
+		id             int
+		leftChopstick  *sync.Mutex
+		rightChopstick *sync.Mutex
+		eatCount       int
+	}
 
 	// PICK UP THE CHOPSTICKS IN ANY ORDER
 
